@@ -1,250 +1,313 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator kWh Listrik</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Listrik</title>
     <style>
-        body {
-            font-family: sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            background-color: #fff;
-            padding: 2em;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 500px;
-            margin-bottom: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        .form-group {
-            margin-bottom: 1.5em;
-        }
-        label {
-            display: block;
-            margin-bottom: 0.5em;
-            font-weight: bold;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 0.8em;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .radio-option {
-            display: flex;
-            align-items: center;
-        }
-        .radio-option input[type="radio"] {
-            margin-right: 10px;
-            width: auto;
-        }
-        .button-group {
-            display: flex;
-            gap: 10px;
-            justify-content: space-between;
-        }
-        button {
-            flex: 1;
-            padding: 0.8em;
-            font-size: 1em;
-            cursor: pointer;
-            border: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .hitung-btn {
-            background-color: #3498db;
-            color: #fff;
-        }
-        .hitung-btn:hover {
-            background-color: #2980b9;
-        }
-        .refresh-btn {
-            background-color: #e74c3c;
-            color: #fff;
-        }
-        .refresh-btn:hover {
-            background-color: #c0392b;
-        }
-        .result {
-            margin-top: 1.5em;
-            padding: 1em;
-            background-color: #e8f5e9;
-            border: 1px solid #c8e6c9;
-            border-radius: 4px;
-            text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        .footer {
-            margin-top: auto;
-            text-align: center;
-            font-size: 12px;
-            color: #555;
-            padding: 10px 0;
-            border-top: 1px solid #ddd;
-            font-style: italic;
-        }
+      body {
+        font-family: sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        background-color: #fff;
+        padding: 2em;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 500px;
+        margin-bottom: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+      }
+      .form-group {
+        margin-bottom: 1.5em;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5em;
+        font-weight: bold;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 0.8em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .radio-option {
+        display: flex;
+        align-items: center;
+      }
+      .radio-option input[type="radio"] {
+        margin-right: 10px;
+        width: auto;
+      }
+      .button-group {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+      }
+      button {
+        flex: 1;
+        padding: 0.8em;
+        font-size: 1em;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+      .hitung-btn {
+        background-color: #3498db;
+        color: #fff;
+      }
+      .hitung-btn:hover {
+        background-color: #2980b9;
+      }
+      .refresh-btn {
+        background-color: #e74c3c;
+        color: #fff;
+      }
+      .refresh-btn:hover {
+        background-color: #c0392b;
+      }
+      .result {
+        margin-top: 1.5em;
+        padding: 1em;
+        background-color: #e8f5e9;
+        border: 1px solid #c8e6c9;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      .footer {
+        margin-top: auto;
+        text-align: center;
+        font-size: 12px;
+        color: #555;
+        padding: 10px 0;
+        border-top: 1px solid #ddd;
+        font-style: italic;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Kalkulator kWh Listrik</h1>
-        <div class="form-group">
-            <label for="jumlahRupiah">Jumlah yang Dibayarkan (Rp)</label>
-            <input type="text" id="jumlahRupiah" placeholder="Masukkan jumlah uang" onkeyup="formatRupiah(this)" required>
+      <h1>Kalkulator Listrik</h1>
+
+      <div class="form-group">
+        <label>Pilih Mode Perhitungan</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" name="mode" value="hitungKWH" id="modeKWH" checked />
+            <label for="modeKWH">Hitung kWh (dari Rupiah)</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="mode" value="hitungRupiah" id="modeRupiah" />
+            <label for="modeRupiah">Hitung Rupiah (dari kWh)</label>
+          </div>
         </div>
-        <div class="form-group">
-            <label>Daya yang terpasang</label>
-            <div class="radio-group">
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1352" id="daya1">
-                    <label for="daya1">R-1/TR 900 VA-RTM</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1444.70" id="daya2">
-                    <label for="daya2">R-1/TR 1.300 VA</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1444.70" id="daya3">
-                    <label for="daya3">R-1/TR 2.200 VA</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1699.53" id="daya4">
-                    <label for="daya4">R-2/TR 3.500 VA s.d. 5.500 VA</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1699.53" id="daya5">
-                    <label for="daya5">R-3/TR, TM 6.600 VA ke atas</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1444.70" id="daya6">
-                    <label for="daya6">B-2/TR 6.600 VA s.d. 200 kVA</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1035.78" id="daya7">
-                    <label for="daya7">B-3/TM, TT di atas 200 kVA</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1035.78" id="daya8">
-                    <label for="daya8">I-3/TM di atas 200 kVA</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="996.74" id="daya9">
-                    <label for="daya9">I-4/TT 30.000 kVA ke atas</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1699.53" id="daya10">
-                    <label for="daya10">P-1/TR 6.600 VA s.d. 200 kVA</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1415.01" id="daya11">
-                    <label for="daya11">P-2/TM di atas 200 kVA</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1699.53" id="daya12">
-                    <label for="daya12">P-3/TR</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="daya" value="1644.52" id="daya13">
-                    <label for="daya13">L/TR, TM, TT</label>
-                </div>
-            </div>
+      </div>
+
+      <div class="form-group" id="inputRupiah">
+        <label for="jumlahRupiah">Jumlah yang Dibayarkan (Rp)</label>
+        <input type="text" id="jumlahRupiah" placeholder="Masukkan jumlah uang" onkeyup="validateInput(this); formatRupiah(this);" required />
+      </div>
+
+      <div class="form-group" id="inputKWH" style="display: none">
+        <label for="jumlahKWH">Jumlah kWh Pemakaian</label>
+        <input type="text" id="jumlahKWH" placeholder="Masukkan jumlah kWh" onkeyup="validateInput(this);" />
+      </div>
+
+      <div class="form-group">
+        <label>Daya yang terpasang</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1352" id="daya1" />
+            <label for="daya1">R-1/TR 900 VA-RTM</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1444.70" id="daya2" />
+            <label for="daya2">R-1/TR 1.300 VA</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1444.70" id="daya3" />
+            <label for="daya3">R-1/TR 2.200 VA</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1699.53" id="daya4" />
+            <label for="daya4">R-2/TR 3.500 VA s.d. 5.500 VA</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1699.53" id="daya5" />
+            <label for="daya5">R-3/TR, TM 6.600 VA ke atas</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1444.70" id="daya6" />
+            <label for="daya6">B-2/TR 6.600 VA s.d. 200 kVA</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1035.78" id="daya7" />
+            <label for="daya7">B-3/TM, TT di atas 200 kVA</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1035.78" id="daya8" />
+            <label for="daya8">I-3/TM di atas 200 kVA</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="996.74" id="daya9" />
+            <label for="daya9">I-4/TT 30.000 kVA ke atas</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1699.53" id="daya10" />
+            <label for="daya10">P-1/TR 6.600 VA s.d. 200 kVA</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1415.01" id="daya11" />
+            <label for="daya11">P-2/TM di atas 200 kVA</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1699.53" id="daya12" />
+            <label for="daya12">P-3/TR</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="daya" value="1644.52" id="daya13" />
+            <label for="daya13">L/TR, TM, TT</label>
+          </div>
         </div>
-        <div class="button-group">
-            <button class="hitung-btn" onclick="hitungKWH()">Hitung kWh</button>
-            <button class="refresh-btn" onclick="refreshInput()">Refresh</button>
-        </div>
-        <div class="result" id="hasilKWH">
-            </div>
+      </div>
+      <div class="button-group">
+        <button class="hitung-btn" onclick="hitung()">Hitung</button>
+        <button class="refresh-btn" onclick="refreshInput()">Refresh</button>
+      </div>
+      <div class="result" id="hasilKWH"></div>
     </div>
 
-    <div class="footer">
-        BPS Kota Jakarta Barat Jaya Jaya Jaya
-    </div>
+    <div class="footer">BPS Kota Jakarta Barat Jaya Jaya Jaya</div>
 
     <script>
-        function hitungKWH() {
-            const jumlahRupiahRaw = document.getElementById('jumlahRupiah').value;
-            const jumlahRupiah = parseFloat(jumlahRupiahRaw.replace(/\./g, ''));
-            
-            const radioButtons = document.getElementsByName('daya');
-            let hargaPerKWH = 0;
+      function hitung() {
+        const mode = document.querySelector('input[name="mode"]:checked').value;
+        const hasilElement = document.getElementById("hasilKWH");
+        hasilElement.innerHTML = "";
 
-            for (const radio of radioButtons) {
-                if (radio.checked) {
-                    hargaPerKWH = parseFloat(radio.value);
-                    break;
-                }
-            }
-            
-            const hasilElement = document.getElementById('hasilKWH');
-
-            if (isNaN(jumlahRupiah) || jumlahRupiah <= 0) {
-                hasilElement.innerHTML = '⚠️ Mohon masukkan jumlah uang yang valid.';
-                return;
-            }
-
-            if (hargaPerKWH === 0) {
-                hasilElement.innerHTML = '⚠️ Mohon pilih daya yang digunakan.';
-                return;
-            }
-
-            const kwh = jumlahRupiah / hargaPerKWH;
-
-            hasilElement.innerHTML = `Konsumsi kWh adalah: <br> ${kwh.toFixed(2)} kWh`;
-        }
-        
-        function formatRupiah(input) {
-            let number_string = input.value.replace(/\./g, '').toString();
-            let split = number_string.split(',');
-            let sisa = split[0].length % 3;
-            let rupiah = split[0].substr(0, sisa);
-            let ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-            if (ribuan) {
-                separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
-            }
-
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            input.value = rupiah;
+        let hargaPerKWH = 0;
+        const radioButtons = document.getElementsByName("daya");
+        for (const radio of radioButtons) {
+          if (radio.checked) {
+            hargaPerKWH = parseFloat(radio.value);
+            break;
+          }
         }
 
-        function refreshInput() {
-            // Mengosongkan field input rupiah
-            document.getElementById('jumlahRupiah').value = '';
-            
-            // Mengosongkan hasil perhitungan
-            document.getElementById('hasilKWH').innerHTML = '';
-            
-            // Menghilangkan checklist pada radio button
-            const radioButtons = document.getElementsByName('daya');
-            for (const radio of radioButtons) {
-                radio.checked = false;
-            }
+        if (hargaPerKWH === 0) {
+          hasilElement.innerHTML = "⚠️ Mohon pilih daya yang digunakan.";
+          return;
         }
+
+        if (mode === "hitungKWH") {
+          const jumlahRupiahRaw = document.getElementById("jumlahRupiah").value;
+          const jumlahRupiah = parseFloat(jumlahRupiahRaw.replace(/\./g, ""));
+          if (isNaN(jumlahRupiah) || jumlahRupiah <= 0) {
+            hasilElement.innerHTML = "⚠️ Mohon masukkan jumlah uang yang valid.";
+            return;
+          }
+          const kwh = jumlahRupiah / hargaPerKWH;
+          hasilElement.innerHTML = `Konsumsi kWh adalah: <br> ${kwh.toFixed(2)} kWh`;
+        } else {
+          // mode === 'hitungRupiah'
+          const jumlahKWH = parseFloat(document.getElementById("jumlahKWH").value);
+          if (isNaN(jumlahKWH) || jumlahKWH <= 0) {
+            hasilElement.innerHTML = "⚠️ Mohon masukkan jumlah kWh yang valid.";
+            return;
+          }
+          const totalRupiah = jumlahKWH * hargaPerKWH;
+          hasilElement.innerHTML = `Jumlah Rupiah yang harus dibayarkan adalah: <br> Rp ${formatAngka(totalRupiah.toFixed(2))}`;
+        }
+      }
+
+      // Fungsi untuk validasi input hanya angka, titik, dan koma
+      function validateInput(input) {
+        const sanitizedValue = input.value.replace(/[^0-9.,]/g, "");
+        if (input.value !== sanitizedValue) {
+          alert("Peringatan: Mohon hanya masukkan angka, titik, atau koma.");
+          input.value = sanitizedValue;
+        }
+      }
+
+      function formatRupiah(input) {
+        let number_string = input.value.replace(/\./g, "").toString();
+        let split = number_string.split(",");
+        let sisa = split[0].length % 3;
+        let rupiah = split[0].substr(0, sisa);
+        let ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        if (ribuan) {
+          separator = sisa ? "." : "";
+          rupiah += separator + ribuan.join(".");
+        }
+
+        rupiah = split[1] !== undefined ? rupiah + "," + split[1] : rupiah;
+        input.value = rupiah;
+      }
+
+      function formatAngka(angka) {
+        const parts = angka.toString().split(".");
+        const rupiah = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return rupiah + (parts[1] ? "," + parts[1] : "");
+      }
+
+      function refreshInput() {
+        document.getElementById("jumlahRupiah").value = "";
+        document.getElementById("jumlahKWH").value = "";
+        document.getElementById("hasilKWH").innerHTML = "";
+
+        const radioButtonsDaya = document.getElementsByName("daya");
+        for (const radio of radioButtonsDaya) {
+          radio.checked = false;
+        }
+
+        const modeKWH = document.getElementById("modeKWH");
+        modeKWH.checked = true;
+        document.getElementById("inputRupiah").style.display = "block";
+        document.getElementById("inputKWH").style.display = "none";
+      }
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const modeRadios = document.getElementsByName("mode");
+        const inputRupiahDiv = document.getElementById("inputRupiah");
+        const inputKWHDiv = document.getElementById("inputKWH");
+
+        for (const radio of modeRadios) {
+          radio.addEventListener("change", (e) => {
+            if (e.target.value === "hitungRupiah") {
+              inputRupiahDiv.style.display = "none";
+              inputKWHDiv.style.display = "block";
+            } else {
+              inputRupiahDiv.style.display = "block";
+              inputKWHDiv.style.display = "none";
+            }
+            // Reset hasil saat mode berubah
+            document.getElementById("hasilKWH").innerHTML = "";
+          });
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
-
